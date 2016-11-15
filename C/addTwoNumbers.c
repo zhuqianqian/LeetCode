@@ -18,7 +18,7 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
     p = result;
     while (l1 != NULL && l2 != NULL) {
         p->val = l1->val + l2->val + carry;
-        / *If I calc the carry directly without if...else..., runtime is longer on Leetcode* /
+        /* If I calc the carry directly without if...else..., runtime is longer on Leetcode */
             if (p->val > 9) {
                 carry = p->val / 10;
                 p->val %= 10;
