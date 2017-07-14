@@ -1,40 +1,20 @@
-#include <stdlib.h>
-#include <stdbool.h>
+/*
+* https://leetcode.com/problems/two-sum/
+*/
 
-struct inthash {
-    int key;
-    int val;
-    struct inthash* next;
-};
-
-#define DEFAULT_SIZE (8192)
-
-unsigned int __ihm;
-struct inthash* bucket;
-
-void inthashCreate(unsigned int size) {
-    int clz;
-    struct inthash** bucket;
-    if (size < 1) {
-        size = DEFAULT_SIZE;
-    }
-    else {
-        clz = __builtin_clz(size);
-        size = 1 << (32 - clz);
-    }
-    __ihm = size - 1;
-    bucket = (struct int**)malloc(sizeof(struct int)*size);
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+int* twoSum(int* nums, int numsSize, int target) {
+	int *result = (int*)malloc(sizeof(int) * 2);
+	int i, j;
+	for (i = 0; i < numsSize; i++) {
+		for (j = i + 1; j < numsSize; j++) {
+			if ((nums[i] + nums[j]) == target) {
+				result[0] = i;
+				result[1] = j;
+			}
+		}
+	}
+	return result;
 }
-
-void inthashRelease() {
-
-}
-
-bool inthashPut(int key, int val) {
-
-}
-
-int inthashGet(int key) {
-
-}
-
