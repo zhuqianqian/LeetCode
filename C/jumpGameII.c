@@ -16,5 +16,26 @@ int jump(int* nums, int numsSize) {
             }
         }
     }
-    return dp[0];
+    int ans = dp[0];
+    free(dp);
+    return ans;
+}
+
+int jumpOpt(int* nums, int numsSize) {
+    if (numsSize <= 1) {
+        return 0;
+    }
+    int farthest = nums[0];
+    int jump = 1;
+    int farAt = nums[0];
+    for (int i = 1; i < numsSize - 1; i++) {
+        if (nums[i] + i > farthest) {
+            farthest = nums[i] + i;
+        }
+        if (farAt == i) {
+            jump++;
+            farAt = farthest;
+        }
+    }
+    return jump;
 }
